@@ -1,0 +1,14 @@
+# Hook config for autoworker SKILL.md frontmatter
+# Integrate into the 'hooks:' section of skills/autoworker/SKILL.md
+hooks:
+  Stop:
+    - hooks:
+        - type: command
+          command: "sh \"${SKILL_DIR}/../../scripts/state-persist.sh\""
+          timeout: 5
+  SessionStart:
+    - matcher: "clear"
+      hooks:
+        - type: command
+          command: "sh \"${SKILL_DIR}/../../scripts/state-recover.sh\""
+          timeout: 5
