@@ -5,27 +5,22 @@ description: >
   implementation task. Provides automatic task decomposition, code implementation,
   testing (L1-L4), and iterative quality gates until completion. Invoke with /autoworker.
 user-invocable: true
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - Glob
-  - Grep
-  - Agent
-  - WebFetch
-  - WebSearch
+version: "1.0.0"
+author: "phj128"
+license: "MIT"
+tags: workflow, automation, quality-gates, testing
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch, Task, AskUserQuestion, Skill
 hooks:
   Stop:
     - hooks:
         - type: command
-          command: "sh \"${SKILL_DIR}/../../scripts/state-persist.sh\""
+          command: "sh \"${CLAUDE_SKILL_DIR}/../../scripts/state-persist.sh\""
           timeout: 5
   SessionStart:
     - matcher: "clear"
       hooks:
         - type: command
-          command: "sh \"${SKILL_DIR}/../../scripts/state-recover.sh\""
+          command: "sh \"${CLAUDE_SKILL_DIR}/../../scripts/state-recover.sh\""
           timeout: 5
 ---
 

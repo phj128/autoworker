@@ -1,4 +1,5 @@
 ---
+name: autoworker
 description: "Start the autoworker execution workflow for any non-trivial task."
 ---
 

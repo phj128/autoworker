@@ -4,11 +4,11 @@ hooks:
   Stop:
     - hooks:
         - type: command
-          command: "sh \"${SKILL_DIR}/../../scripts/state-persist.sh\""
+          command: "sh \"${CLAUDE_SKILL_DIR}/../../scripts/state-persist.sh\""
           timeout: 5
   SessionStart:
     - matcher: "clear"
       hooks:
         - type: command
-          command: "sh \"${SKILL_DIR}/../../scripts/state-recover.sh\""
+          command: "sh \"${CLAUDE_SKILL_DIR}/../../scripts/state-recover.sh\""
           timeout: 5
