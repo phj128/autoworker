@@ -1,9 +1,6 @@
 ---
 name: autoworker
-description: >
-  Auto-loop execution workflow with quality gates. Use when starting any non-trivial
-  implementation task. Provides automatic task decomposition, code implementation,
-  testing (L1-L4), and iterative quality gates until completion. Invoke with /autoworker.
+description: "Auto-loop execution workflow with quality gates for multi-file implementation tasks. Use when building a feature, implementing end-to-end functionality, or developing and testing changes that span multiple files and require iterative verification. Decomposes tasks into phases, implements code, runs progressive testing (unit, integration, chain, end-to-end), and enforces quality gates until completion. Invoke with /autoworker."
 user-invocable: true
 version: "1.0.0"
 author: "phj128"
@@ -194,13 +191,6 @@ Approach: Delete old output → re-run affected workflow → grep to confirm cha
 ### Verified Failure Mode
 Claude feels context is too long → suggests /clear → user does it → new session remembers nothing → previous plan discussion completely wasted. Root cause: discussion conclusions were only in context, never written to files.
 
-### Recovery after /clear
-When starting a new session after /clear:
-1. Check for subtask_*.md files → if found, call autoworker:dispatch to resume
-2. No subtask but user gives new task → call autoworker:subtask-init
-3. Neither → normal conversation
-4. **If something feels missing** — ask the user to re-state it. Do NOT guess from vague memory.
-
 ---
 
 ## File Structure
@@ -278,7 +268,3 @@ Mandatory flow after /clear (in order, no skipping):
 ```
 
 **Forbidden**: Skipping this flow to jump straight into investigation or coding.
-
-**Verified failure modes**:
-1. Claude wants to "investigate current state before creating subtask" → finishes investigating and starts coding directly → subtask never created → no execution chain → no quality gates.
-2. Old subtask exists + user gave new task → Claude thinks it should dispatch to old subtask → skips autoworker:subtask-init → new task has no subtask.md → no execution chain. Root cause: File state prioritized over user intent.

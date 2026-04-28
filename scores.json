@@ -1,0 +1,16 @@
+{
+  "repo": "phj128/autoworker",
+  "skills": [
+    { "name": "autoworker", "before": 79, "after": 89 },
+    { "name": "code", "before": 84, "after": 100 },
+    { "name": "deep-plan", "before": 81, "after": 87 },
+    { "name": "dispatch", "before": 81, "after": 90 },
+    { "name": "gate-check", "before": 72, "after": 85 },
+    { "name": "checkpoint", "before": 77, "after": 77 },
+    { "name": "test", "before": 68, "after": 68 },
+    { "name": "subtask-init", "before": 69, "after": 69 },
+    { "name": "subtask-plan", "before": 75, "after": 75 },
+    { "name": "subtask-update", "before": 79, "after": 79 },
+    { "name": "sync-docs", "before": 77, "after": 77 }
+  ]
+}
