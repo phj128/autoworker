@@ -1,16 +1,11 @@
 ---
 name: deep-plan
-description: |
-  Structured deep discussion for Plan Mode. Runs inside EnterPlanMode to ensure thorough
-  questioning before writing a plan. Covers motivation, assumptions, design, acceptance criteria.
-  Call this immediately after entering Plan Mode for any non-trivial task.
+description: "Structured deep discussion for Plan Mode that asks clarifying questions about requirements, surfaces hidden assumptions, defines acceptance criteria, and identifies design trade-offs. Use when planning a feature, thinking through a task, discussing requirements before coding, or entering Plan Mode for any non-trivial task. Runs inside EnterPlanMode to ensure thorough questioning before writing a plan."
 ---
 
 # autoworker:deep-plan — Structured Deep Discussion (Inside Plan Mode)
 
-Invoke immediately after entering Plan Mode. Ensures discussion depth through 5 structured phases, producing a structured plan file for autoworker:subtask-init to extract from.
-
-**Core idea**: Plan depth determines the quality ceiling of the execution chain. autoworker:subtask-init **extracts** from the plan file, autoworker:subtask-plan **derives** the verification plan from it. If the discussion is shallow, the entire chain — no matter how well-structured — is verifying an insufficiently thought-through solution.
+Invoke immediately after entering Plan Mode. Ensures discussion depth through 5 structured phases, producing a structured plan file for autoworker:subtask-init to extract from. Plan depth determines the quality ceiling of the entire execution chain.
 
 ## Execution Flow
 

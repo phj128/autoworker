@@ -1,8 +1,6 @@
 ---
 name: code
-description: |
-  Implement ONE pending Phase from subtask plan. Only write code, do not mark checkboxes or run tests.
-  Called by autoworker:dispatch. Ends by calling autoworker:checkpoint.
+description: "Implement the next pending phase from the subtask plan — write code, build a feature step, or execute implementation commands. Use when continuing implementation, coding the next step, or writing code for a planned phase. Only writes code; does not mark checkboxes or run tests. Called by autoworker:dispatch, ends by calling autoworker:checkpoint."
 ---
 
 # autoworker:code — Implement One Phase

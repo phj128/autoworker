@@ -1,9 +1,6 @@
 ---
 name: dispatch
-description: |
-  Read subtask.md checkbox state and route to next skill. The ONLY routing point in the execution loop.
-  Called after autoworker:checkpoint, autoworker:gate-check, autoworker:subtask-update, autoworker:subtask-plan, or when resuming after context loss.
-  When lost, call autoworker:dispatch.
+description: "Read subtask.md checkbox state and route to the next skill in the execution loop. Use when resuming work, continuing tasks, determining what's next, or recovering after context loss. The sole routing point — called after autoworker:checkpoint, autoworker:gate-check, autoworker:subtask-update, or autoworker:subtask-plan."
 ---
 
 # autoworker:dispatch — Execution Chain Router (Sole Routing Point)
@@ -82,16 +79,12 @@ or
 
 Only exception: Gate PASS — directly output completion report, do not invoke any other skill.
 
-## Key Constraints
+## Constraints
 
-- **Only read checkboxes, do not infer or remember**: State comes entirely from the file, not from conversation context
-- **Layers marked "skip" in the verification plan count as complete**: If the plan says "skip L2, reason: ..." and has no L2 items → treated as complete
+- **Stateless — reads only, never infers**: State comes entirely from the file on each invocation, not from conversation context. Ensures consistency after context loss
+- **Layers marked "skip" count as complete**: If the plan says "skip L2, reason: ..." and has no L2 items → treated as complete
 - **Accepts no arguments**: Entirely driven by file state
 - **Gate result reading method**: grep for `Gate result:` line, read PASS or FAIL
 - **PASS is the only terminal point**: Only when Gate PASS does dispatch terminate the loop
-
-## Important Notes
-
-- **dispatch is stateless**: Every invocation re-reads the file, ensuring consistency after context loss
 - **Makes no modifications**: Does not edit files, write code, or run tests — only reads and routes
-- **Loop-safe**: dispatch never calls itself — only calls autoworker:code, autoworker:test, autoworker:gate-check, or autoworker:subtask-update
+- **Loop-safe**: Never calls itself — only calls autoworker:code, autoworker:test, autoworker:gate-check, or autoworker:subtask-update

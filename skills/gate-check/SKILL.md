@@ -1,9 +1,6 @@
 ---
 name: gate-check
-description: |
-  Final quality gate before reporting task completion (Gate 3).
-  Fills confidence assessment, runs supplementary verification for <95% items, completes self-check checklist.
-  Writes PASS/FAIL result to subtask.md, then calls autoworker:dispatch for routing.
+description: "Final quality gate and pre-completion verification before reporting task completion. Use when all tests are complete and the task needs a final quality check, task completion verification, or pre-delivery review. Fills confidence assessment, runs supplementary verification for items below 95% confidence, completes a self-check checklist, and writes PASS/FAIL result to subtask.md before calling autoworker:dispatch for routing."
 ---
 
 # autoworker:gate-check — Pre-Completion Self-Check (Gate 3)
@@ -61,9 +58,7 @@ When the table above has < 95% items:
 Record in subtask.md's "< 95% Supplementary Verification" table.
 
 **Boundary for "requires user confirmation"** — only scenarios depending on human senses qualify:
-- "Selector may have changed" → launch browser and check — NOT "requires user confirmation"
-- "API might not work" → curl it — NOT "requires user confirmation"
-- "Config might be wrong" → write a script to load and check — NOT "requires user confirmation"
+- Programmatically verifiable (API responses, config validity, selector changes) → execute verification autonomously, NOT "requires user confirmation"
 - UI appearance, interaction feel → legitimate "requires user confirmation"
 
 When all items are >= 95%, write "All >= 95%, no supplementary verification needed".
